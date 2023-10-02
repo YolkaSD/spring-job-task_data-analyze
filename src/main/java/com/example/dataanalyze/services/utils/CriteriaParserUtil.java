@@ -19,7 +19,7 @@ import java.util.List;
 
 public class CriteriaParserUtil {
 
-    public static CriteriesDTO createInput(String inputPath) {
+    public static CriteriesDTO parseFromInput(String inputPath) {
         ObjectMapper mapper = new ObjectMapper();
         List<String> lastNames = new ArrayList<>();
         List<ProductDTO> products = new ArrayList<>();
