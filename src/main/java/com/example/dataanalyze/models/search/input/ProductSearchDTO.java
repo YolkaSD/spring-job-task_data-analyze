@@ -3,7 +3,7 @@ package com.example.dataanalyze.models.search.input;
 import lombok.Data;
 
 @Data
-public class ProductDTO {
+public class ProductSearchDTO {
     private String productName;
     private int minTimes;
 }

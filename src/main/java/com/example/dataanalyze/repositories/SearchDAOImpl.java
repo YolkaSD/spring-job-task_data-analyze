@@ -1,8 +1,8 @@
 package com.example.dataanalyze.repositories;
 
 import com.example.dataanalyze.models.search.input.ExpensesRangeDTO;
-import com.example.dataanalyze.models.search.input.ProductDTO;
-import com.example.dataanalyze.models.search.output.CustomerDTO;
+import com.example.dataanalyze.models.search.input.ProductSearchDTO;
+import com.example.dataanalyze.models.search.output.CustomerSearchDTO;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -20,9 +20,9 @@ public class SearchDAOImpl implements SearchDAO {
     }
 
     @Override
-    public List<CustomerDTO> executeFromLastName(String lastName) {
+    public List<CustomerSearchDTO> executeFromLastName(String lastName) {
         return jdbcTemplate.query("select first_name, last_name from sa.customers where last_name = ?", (rs, rowNum) -> {
-            CustomerDTO customer = new CustomerDTO();
+            CustomerSearchDTO customer = new CustomerSearchDTO();
             customer.setFirstName(rs.getString("first_name"));
             customer.setLastName(rs.getString("last_name"));
             return customer;
@@ -30,7 +30,7 @@ public class SearchDAOImpl implements SearchDAO {
     }
 
     @Override
-    public List<CustomerDTO> executeFromProductName(ProductDTO product) {
+    public List<CustomerSearchDTO> executeFromProductName(ProductSearchDTO product) {
         String sql = "SELECT c.first_name, c.last_name " +
                 "FROM sa.customers c " +
                 "WHERE c.customer_id IN ( " +
@@ -42,7 +42,7 @@ public class SearchDAOImpl implements SearchDAO {
                 "    HAVING COUNT(*) >= ?);";
 
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            CustomerDTO customer = new CustomerDTO();
+            CustomerSearchDTO customer = new CustomerSearchDTO();
             customer.setFirstName(rs.getString("first_name"));
             customer.setLastName(rs.getString("last_name"));
             return customer;
@@ -50,7 +50,7 @@ public class SearchDAOImpl implements SearchDAO {
     }
 
     @Override
-    public List<CustomerDTO> executeFromExpensesRange(ExpensesRangeDTO range) {
+    public List<CustomerSearchDTO> executeFromExpensesRange(ExpensesRangeDTO range) {
         String sql = "SELECT c.first_name, c.last_name " +
                 "FROM sa.customers c " +
                 "JOIN sa.purchases p ON c.customer_id = p.customer_id " +
@@ -59,7 +59,7 @@ public class SearchDAOImpl implements SearchDAO {
                 "HAVING SUM(pr.price) BETWEEN ? AND ?;";
 
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            CustomerDTO customer = new CustomerDTO();
+            CustomerSearchDTO customer = new CustomerSearchDTO();
             customer.setFirstName(rs.getString("first_name"));
             customer.setLastName(rs.getString("last_name"));
             return customer;
@@ -67,7 +67,7 @@ public class SearchDAOImpl implements SearchDAO {
     }
 
     @Override
-    public List<CustomerDTO> executeFromBadCustomers(int bad) {
+    public List<CustomerSearchDTO> executeFromBadCustomers(int bad) {
         String sql = "SELECT c.first_name, c.last_name " +
                 "FROM sa.customers c " +
                 "LEFT JOIN sa.purchases p ON c.customer_id = p.customer_id " +
@@ -76,7 +76,7 @@ public class SearchDAOImpl implements SearchDAO {
                 "LIMIT ?;";
 
         return jdbcTemplate.query(sql, (rs, rowNum) -> {
-            CustomerDTO customer = new CustomerDTO();
+            CustomerSearchDTO customer = new CustomerSearchDTO();
             customer.setFirstName(rs.getString("first_name"));
             customer.setLastName(rs.getString("last_name"));
             return customer;

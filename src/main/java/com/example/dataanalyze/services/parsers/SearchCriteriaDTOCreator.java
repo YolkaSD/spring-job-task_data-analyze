@@ -2,7 +2,7 @@ package com.example.dataanalyze.services.parsers;
 
 import com.example.dataanalyze.models.search.input.CriteriasDTO;
 import com.example.dataanalyze.models.search.input.ExpensesRangeDTO;
-import com.example.dataanalyze.models.search.input.ProductDTO;
+import com.example.dataanalyze.models.search.input.ProductSearchDTO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
@@ -21,7 +21,7 @@ public class SearchCriteriaDTOCreator {
     public CriteriasDTO create(String inputPath) {
         ObjectMapper mapper = new ObjectMapper();
         List<String> lastNames = new ArrayList<>();
-        List<ProductDTO> products = new ArrayList<>();
+        List<ProductSearchDTO> products = new ArrayList<>();
         List<ExpensesRangeDTO> expensesRanges = new ArrayList<>();
         List<Integer> badCustomers = new ArrayList<>();
 
@@ -32,7 +32,7 @@ public class SearchCriteriaDTOCreator {
                     lastNames.add(criterion.get("lastName").asText());
                 }
                 if (criterion.has("productName") && criterion.has("minTimes")) {
-                    ProductDTO product = new ProductDTO();
+                    ProductSearchDTO product = new ProductSearchDTO();
                     product.setProductName(criterion.get("productName").asText());
                     product.setMinTimes(criterion.get("minTimes").asInt());
                     products.add(product);

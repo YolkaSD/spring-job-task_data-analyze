@@ -9,7 +9,7 @@ import java.util.List;
 @Builder
 public class CriteriasDTO {
     private List<String> lastNames;
-    private List<ProductDTO> products;
+    private List<ProductSearchDTO> products;
     private List<ExpensesRangeDTO> expensesRanges;
     private List<Integer> badCustomers;
 }

@@ -2,7 +2,7 @@ package com.example.dataanalyze.services.parsers;
 
 import com.example.dataanalyze.models.search.input.CriteriasDTO;
 import com.example.dataanalyze.models.search.input.ExpensesRangeDTO;
-import com.example.dataanalyze.models.search.input.ProductDTO;
+import com.example.dataanalyze.models.search.input.ProductSearchDTO;
 import com.example.dataanalyze.models.search.output.SearchDTO;
 import com.example.dataanalyze.models.search.output.criterias.CriteriaBadCustomersDTO;
 import com.example.dataanalyze.models.search.output.criterias.CriteriaExpensesRangeDTO;
@@ -51,7 +51,7 @@ public class SearchOutputDTOCreator {
     }
 
     private void processProducts(CriteriasDTO criteriasDTO, List<ResultDTO> resultList) {
-        for (ProductDTO product : criteriasDTO.getProducts()) {
+        for (ProductSearchDTO product : criteriasDTO.getProducts()) {
             ResultProductDTO result = new ResultProductDTO();
             CriteriaProductDTO criteria = new CriteriaProductDTO();
             criteria.setMinTimes(product.getMinTimes());
