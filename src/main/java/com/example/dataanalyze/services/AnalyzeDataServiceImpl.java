@@ -11,9 +11,6 @@ import com.example.dataanalyze.services.utils.ValidationUtil;
 import com.example.dataanalyze.services.write.Writable;
 import org.springframework.stereotype.Service;
 
-
-
-
 @Service
 public class AnalyzeDataServiceImpl implements AnalyzeDataService {
     private final SearchOutputDTOCreator searchOutputDTOCreator;
