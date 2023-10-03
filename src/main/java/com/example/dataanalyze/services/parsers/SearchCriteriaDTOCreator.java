@@ -1,10 +1,11 @@
-package com.example.dataanalyze.services.utils;
+package com.example.dataanalyze.services.parsers;
 
-import com.example.dataanalyze.models.creteries.CriteriesDTO;
-import com.example.dataanalyze.models.creteries.ExpensesRangeDTO;
-import com.example.dataanalyze.models.creteries.ProductDTO;
+import com.example.dataanalyze.models.search.input.CriteriasDTO;
+import com.example.dataanalyze.models.search.input.ExpensesRangeDTO;
+import com.example.dataanalyze.models.search.input.ProductDTO;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.stereotype.Component;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -13,13 +14,11 @@ import java.util.List;
 
 /**
  * Класс для чтения и разбора критериев из JSON-файла и создания объекта CriteriesDTO.
- *
-
  */
+@Component
+public class SearchCriteriaDTOCreator {
 
-public class CriteriaParserUtil {
-
-    public static CriteriesDTO parseFromInput(String inputPath) {
+    public CriteriasDTO create(String inputPath) {
         ObjectMapper mapper = new ObjectMapper();
         List<String> lastNames = new ArrayList<>();
         List<ProductDTO> products = new ArrayList<>();
@@ -54,7 +53,7 @@ public class CriteriaParserUtil {
             throw new IllegalArgumentException("Ошибка при чтении JSON из файла " + inputPath, e);
         }
 
-        return CriteriesDTO.builder()
+        return CriteriasDTO.builder()
                 .lastNames(lastNames)
                 .products(products)
                 .expensesRanges(expensesRanges)

@@ -9,8 +9,8 @@ public class DataAnalyzeApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(DataAnalyzeApplication.class, args).getBean("analyzeDataServiceImpl", AnalyzeDataServiceImpl.class).executeOperation(args);
-    }
 
+    }
 
 
 }

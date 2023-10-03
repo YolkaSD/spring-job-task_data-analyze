@@ -1,4 +1,4 @@
-package com.example.dataanalyze.models.creteries;
+package com.example.dataanalyze.models.search.input;
 
 import lombok.Data;
 
