@@ -29,13 +29,15 @@ public class ValidationUtil {
 
     private static void validateCountArgs(String[] args) {
         if (args.length != 3) {
-            throw new IllegalArgumentException(Errors.ERROR_COUNT_ARGS.getMessage());
+            System.err.println(Errors.ERROR_COUNT_ARGS.getMessage());
+            System.exit(1);
         }
     }
 
     private static void validateOperationType(String operationType) {
         if (!operationType.equals(Errors.TYPE_OPERATION_SEARCH.getMessage()) && !operationType.equals(Errors.TYPE_OPERATION_STAT.getMessage())) {
-            throw new IllegalArgumentException(Errors.ERROR_OPERATION_TYPE.getMessage() + ": " + operationType);
+            System.err.println(Errors.ERROR_OPERATION_TYPE.getMessage() + ": " + operationType);
+            System.exit(1);
         }
     }
 
@@ -51,13 +53,15 @@ public class ValidationUtil {
 
     private static void validateInputFilePath(String filePath) {
         if (isFileValid(filePath, true)) {
-            throw new IllegalArgumentException(Errors.ERROR_INCORRECT_INPUT_FILE.getMessage() + filePath);
+            System.err.println(Errors.ERROR_INCORRECT_INPUT_FILE.getMessage() + filePath);
+            System.exit(1);
         }
     }
 
     private static void validateOutputFilePath(String filePath) {
         if (isFileValid(filePath, false)) {
-            throw new IllegalArgumentException(Errors.ERROR_INCORRECT_OUTPUT_FILEPATH.getMessage() + filePath);
+            System.err.println(Errors.ERROR_INCORRECT_OUTPUT_FILEPATH.getMessage() + filePath);
+            System.exit(1);
         }
     }
 
