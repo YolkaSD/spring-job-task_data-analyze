@@ -14,7 +14,7 @@
   Сначала вам нужно склонировать репозиторий с кодом проекта с GitHub на свой компьютер.    
   Для этого используйте команду Git:
       ```bash
-      git clone https://github.com/ваш-путь-к-репозиторию.git
+      git clone https://github.com/YolkaSD/spring-job-task_data-analyze
       ```
 2. **Сборка проекта с помощью Maven:**   
   Убедитесь, что у вас установлен Apache Maven.   
